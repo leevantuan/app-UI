@@ -1,0 +1,18 @@
+/* Khi có lỗi, đổi viền input sang màu đỏ */
+.form-control.ng-invalid.ng-touched {
+  border: 2px solid var(--base-red-bold-color) !important;
+  outline: none !important;
+  //   box-shadow: 0 0 5px var(--base-red-error-color) !important;
+}
+
+/* Khi focus vào input có lỗi */
+.form-control.ng-invalid.ng-touched:focus {
+  border-color: var(--base-red-bold-color) !important;
+  //   box-shadow: 0 0 8px var(--base-red-bold-color) !important;
+}
+
+.custom-box {
+  border-radius: 16px !important;
+  box-shadow: -5px -5px 10px rgba(128, 128, 128, 0.142),
+    5px 5px 10px rgba(128, 128, 128, 0.201) !important;
+}
