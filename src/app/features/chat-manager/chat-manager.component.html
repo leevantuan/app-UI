@@ -1,0 +1,63 @@
+<div class="d-flex vh-100">
+  <!-- Danh sách chat -->
+  <div class="col-3 bg-white ps-4 border-end shadow-sm d-flex flex-column">
+    <h2 class="fs-5 fw-semibold mb-4">Chats</h2>
+    <ul class="list-unstyled overflow-auto chat-list flex-grow-1">
+      <li
+        *ngFor="let chat of chats"
+        class="d-flex align-items-center p-3 bg-white rounded shadow-sm chat-item"
+      >
+        <img
+          [src]="chat.avatar"
+          alt="Avatar"
+          class="rounded-circle me-3"
+          width="40"
+          height="40"
+        />
+        <div class="flex-grow-1">
+          <h3 class="fs-6 fw-medium mb-0">{{ chat.name }}</h3>
+          <p class="text-muted small mb-0 text-truncate">{{ chat.message }}</p>
+        </div>
+        <span class="text-muted small">{{ chat.time }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Cửa sổ chat -->
+  <div class="col-9 d-flex flex-column h-100">
+    <div class="p-3 bg-white border-bottom shadow-sm">
+      <h2 class="fs-5 fw-semibold">Chat Window</h2>
+    </div>
+
+    <!-- Tin nhắn -->
+    <div class="flex-grow-1 p-3 overflow-auto chat-window">
+      <div
+        *ngFor="let msg of messages"
+        class="mb-3 d-flex"
+        [ngClass]="{ 'justify-content-end': msg.sender === 'me' }"
+      >
+        <div
+          class="message-bubble px-3 py-2 rounded"
+          [ngClass]="{
+            'bg-primary text-white align-self-end': msg.sender === 'me',
+            'bg-light text-dark': msg.sender !== 'me'
+          }"
+        >
+          {{ msg.text }}
+          <div class="text-muted small text-end mt-1">{{ msg.time }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ô nhập tin nhắn -->
+    <div class="p-3 border-top d-flex">
+      <input
+        type="text"
+        [(ngModel)]="newMessage"
+        placeholder="Type a message..."
+        class="form-control"
+      />
+      <button (click)="sendMessage()" class="btn btn-primary ms-2">Send</button>
+    </div>
+  </div>
+</div>
